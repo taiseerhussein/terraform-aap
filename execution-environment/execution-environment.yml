@@ -22,3 +22,6 @@ additional_build_steps:
     - RUN curl "https://releases.hashicorp.com/terraform/1.10.4/terraform_1.10.4_linux_amd64.zip" -o "/terraform.zip"
     - RUN unzip /terraform.zip -d /terraform
     - RUN mv /terraform/terraform /bin
+  append_final: RUN cat /etc/os-release
+    ENV TZ=America/Chicago
+    RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
